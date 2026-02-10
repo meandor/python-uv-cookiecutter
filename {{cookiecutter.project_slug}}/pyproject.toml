@@ -1,0 +1,33 @@
+[project]
+name = "{{cookiecutter.project_slug}}"
+version = "0.1.0"
+dependencies = [
+    {%- if cookiecutter.command_line_interface|lower == 'argparse' %}
+    "argparse>=1.4.0",
+    {%- endif %}
+    {%- if cookiecutter.command_line_interface|lower == 'click' %}
+    "click>=8.3.1",
+    {%- endif %}
+]
+requires-python = ">=3.13"
+authors = [
+    {name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}"},
+]
+description = "{{cookiecutter.project_short_description}}"
+readme = "README.md"
+license = "{{cookiecutter.open_source_license}}"
+license-files = ["LICENSE"]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.0",
+    "pytest>=9.0.1",
+    "ruff>=0.14.7",
+]
+
+[project.scripts]
+{{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
